@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  font-family: "Popins", sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: var(--bg);
   color: white;
 }
@@ -89,7 +89,7 @@ body {
 .navbar .search-form {
   position: absolute;
   top: 100%;
-  right: 75;
+  right: 75px;
   background-color: #fff;
   width: 50rem;
   height: 5rem;
@@ -177,13 +177,13 @@ body {
 .shopping-cart .cart-item #add,
 .shopping-cart .cart-item #remove {
   display: inline-block;
-  padding-inline-start: 2px 5px;
+  padding-inline-start: 5px;
   cursor: pointer;
   margin: 0 8px;
   background-color: black;
   color: white;
   font-weight: bold;
-  font-size: 1, 1rem;
+  font-size: 1.1rem;
 }
 
 .shopping-cart h4 {
@@ -546,7 +546,7 @@ footer .credit {
 }
 
 footer .credit a {
-  color: car(--bg);
+  color: var(--bg);
   font-weight: 700;
 }
 
@@ -722,6 +722,6 @@ footer .credit a {
 /* Mobile phone */
 @media (max-width: 450px) {
   html {
-    font-size: 5.5%;
+    font-size: 50%;
   }
 }

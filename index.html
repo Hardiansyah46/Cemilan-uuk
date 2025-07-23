@@ -78,7 +78,7 @@
       <form action="" id="checkoutForm">
         <h5>Customer Detail</h5>
         <input type="hidden" name="items" x-model="JSON.stringify($store.cart.items)">
-        <input type="hidden" name="total" x-model="$store.cart.items">
+        <input type="hidden" name="total" x-model="$store.cart.total">
         
         <label for="name">
           <span>Name</span>
@@ -128,7 +128,7 @@
         <div class="about-img">
           <img src="/img/menu/1.jpg" alt="Tentang Kami" style="width: 200px; height: auto;" />
         </div>
-        <div class="content"></div>
+        <div class="content">
         <h3>Kenapa memilih Cemilan kami</h3>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
@@ -290,7 +290,7 @@
     <a href="#"><i data-feather="facebook"></i></a>
   </div>
   <div class="links">
-<a href="#home">Home></a>
+<a href="#home">Home</a>
 <a href="#about">Tentang Kami</a>
 <a href="#menu">Menu</a>
 <a href="#contact">Kontak></a>
@@ -309,7 +309,7 @@
   <div class="modal-container">
     <a href="#" class="close-icon"><i data-feather="x"></i></a>
     <div class="modal-content">
-      <img src="img/product/1.jpg.jpg" alt="Product 1">
+      <img src="img/product/1.jpg." alt="Product 1">
       <div class="product-content">
         <h3>Product 1</h3>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
