@@ -240,6 +240,32 @@
       <div class="product-price"><span x-text="rupiah(item.price)"></span></div>
       </div>    
     </div>
+
+   <div class="row" x-data="products">
+  <template x-for="(item, index) in items" :key="index">
+    <div class="product-card">
+      <div class="product-icon">
+        <!-- icon belanja dan detail -->
+      </div>
+
+      <div class="product-image">
+        <img :src="`img/product/${item.img}`" :alt="item.name">
+      </div>
+
+      <div class="product-content">
+        <h3 x-text="item.name"></h3>
+        <div class="product-start">
+          <!-- bintang rating -->
+        </div>
+        <div class="product-price">
+          <span x-text="rupiah(item.price)"></span>
+        </div>
+      </div>
+    </div>
+  </template>
+</div>
+
+
   </template>
    </div>
 </section>

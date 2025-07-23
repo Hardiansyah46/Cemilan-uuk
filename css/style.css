@@ -22,6 +22,11 @@ body {
   color: white;
 }
 
+img {
+  width: 100%;
+  height: auto;
+}
+
 /* navbar */
 .navbar {
   display: flex;
@@ -247,6 +252,20 @@ body {
 }
 
 /* Hero section */
+@media (max-width: 450px) {
+  .hero .content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero .content p {
+    font-size: 1.2rem;
+  }
+
+  .hero .content .cta {
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+  }
+}
 
 .hero {
   margin-top: 50px;
@@ -262,23 +281,22 @@ body {
   mask-image: linear-gradient(rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0));
 }
 
-/* .hero::after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 30%;
-  height: 100%;
-  bottom: 0;
-  background: linear-gradient(0deg, rgb(196, 55, 55) 8% rgb(199, 39, 27) 50%);
-} */
+.hero .content {
+  position: relative;
+}
 
 .hero .content {
   padding: 1.4rem 7%;
-  /* max-width: 60rem; */
   width: 100%;
   text-align: center;
   position: fixed;
   top: 150px;
+}
+
+.hero .content {
+  position: relative;
+  padding: 3rem 2rem;
+  top: auto;
 }
 
 .hero .content h1 {
@@ -345,14 +363,6 @@ body {
   flex: 1 1 45rem;
 }
 
-/* .about .row .about-img img {
-  width: 100%;
-  -webkit-mask-image: url("../img/menu/coffebins.svg");
-  -webkit-mask-size: 50%;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-} */
-
 .about .row .content {
   flex: 1 1 35rem;
   padding-inline-start: 0 1rem;
@@ -387,6 +397,11 @@ body {
 .menu .row {
   display: flex;
   flex-wrap: wrap;
+}
+
+.menu .row {
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 5rem;
   justify-content: center;
 }
@@ -405,7 +420,27 @@ body {
   margin-top: 1rem auto 0.5rem;
 }
 
+@media (max-width: 450px) {
+  .products .row {
+    grid-template-columns: 1fr;
+  }
+
+  .menu .row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu .row .menu-card {
+    width: 90%;
+  }
+}
+
 /* Products Section */
+
+.products .row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
 
 .products .row {
   display: grid;
@@ -417,7 +452,7 @@ body {
 
 .products .product-card {
   text-align: center;
-  border: 1px solid #666;
+  border: 1px solid #f5ecec;
   padding: 2rem;
 }
 
@@ -548,6 +583,25 @@ footer .credit {
 footer .credit a {
   color: var(--bg);
   font-weight: 700;
+}
+
+@media (max-width: 450px) {
+  footer {
+    padding: 1rem;
+  }
+
+  footer .socials a {
+    font-size: 1.2rem;
+  }
+
+  footer .links a {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+  }
+
+  footer .credit {
+    font-size: 0.7rem;
+  }
 }
 
 /* Modal Box  */
@@ -724,4 +778,126 @@ footer .credit a {
   html {
     font-size: 50%;
   }
+}
+
+@media (max-width: 450px) {
+  .navbar {
+    padding: 1rem 5%;
+  }
+
+  .navbar .navbar-logo {
+    font-size: 1.5rem;
+  }
+
+  .navbar .navbar-nav a {
+    font-size: 1.5rem;
+  }
+
+  .navbar .search-form {
+    width: 90%;
+    right: 1rem;
+  }
+}
+
+/* Beda lagi ini ya */
+@media (max-width: 450px) {
+  .contact .row {
+    flex-direction: column;
+  }
+
+  .contact .row .map,
+  .contact .row form {
+    width: 100%;
+  }
+}
+
+/* Untuk gambar */
+/* .menu-card {
+  background-color: #ffffff00;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  margin: 1rem;
+  transition: transform 0.2s;
+  flex: 1 1 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-card:hover {
+  transform: scale(1.02);
+}
+
+.menu-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #cccccc00;
+  display: block;
+}
+
+.card-content {
+  padding: 1rem;
+  text-align: center;
+}
+
+.menu-card-title {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  color: #333;
+}
+
+.menu-card-price {
+  font-weight: bold;
+  color: #b3562a;
+  font-size: 1rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .menu-card {
+    max-width: 90%;
+  }
+} */
+
+.product-card {
+  border: 1px solid #cccccc00;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #ffffff00;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: scale(1.01);
+}
+
+/* Untuk bungkus gambar */
+.product-image {
+  width: 100%;
+  height: 200px; /* kamu bisa sesuaikan tinggi gambar di sini */
+  overflow: hidden;
+}
+
+/* Gambar supaya cover area dengan rapi */
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
 }
