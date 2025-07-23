@@ -162,13 +162,15 @@ img {
   display: flex;
   align-items: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px dashed #666;
+  border-bottom: 1px dashed #e40808;
   position: relative;
 }
 
 .shopping-cart img {
+  width: 4rem;
   height: 4rem;
-  border-radius: 50%;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .shoppping-cart h3 {
