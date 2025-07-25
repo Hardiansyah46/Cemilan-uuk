@@ -131,3 +131,39 @@ Terima kasih!`;
     },
   }));
 });
+
+// Kontak masuk kami
+document.addEventListener("alpine:init", () => {
+  Alpine.data("contactForm", () => ({
+    name: "",
+    email: "",
+    phone: "",
+    error: "",
+
+    get canSubmit() {
+      return this.name.trim() && this.email.trim() && this.phone.trim();
+    },
+
+    sendToWA() {
+      if (!this.canSubmit) {
+        this.error = "Mohon lengkapi semua data kontak!";
+        return;
+      }
+
+      this.error = "";
+
+      const message = `Kontak Baru:
+Nama: ${this.name}
+Email: ${this.email}
+No HP: ${this.phone}
+
+Pesan masuk dari form kontak website.`;
+
+      const waNumber = "6281224823364";
+      const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(
+        message
+      )}`;
+      window.open(url, "_blank");
+    },
+  }));
+});

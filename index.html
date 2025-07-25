@@ -20,6 +20,8 @@
 
 <!-- Alpinejs -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+
 
     <!-- App -->
      <script src="src/app.js" async></script>
@@ -57,54 +59,53 @@
  <!-- Shopping Cart -->
   <div class="shopping-cart">
     <h2></h2>
+    <div class="cart-item-list">
     <template x-for="(item, index) in $store.cart.items" :key="index">
       <div class="cart-item">
-        <img :src="`/img/product/${item.img}`" :alt="item.name">
-        <div class="item-detail">
-          <h3 x-text="item.name"></h3>
-          <div>
-            <span x-text="$rupiah(item.price)"></span> &times;
-            <button @click="$store.cart.remove(item.id)">−</button>
-            <span x-text="item.quantity"></span>
-            <button @click="$store.cart.add(item)">+</button> =
+        <h3 x-text="item.name"></h3>
+        <img :src="`img/product/${item.img}`" :alt="item.name" />
+        
+        <div class="cart-info">
+          <div class="quantity-control">
+            <button @click="$store.cart.remove(item.id)" class="qty-btn">−</button>
+            <span class="qty-value" x-text="item.quantity"></span>
+            <button @click="$store.cart.add(item)" class="qty-btn">+</button>
+          </div>
+
+          <div class="price-display">
+            <span x-text="$rupiah(item.price)"></span> × 
             <span x-text="$rupiah(item.total)"></span>
           </div>
         </div>
       </div>
     </template>
-
-    <h4 x-show="!$store.cart.items.length"></h4>
-    <h4 x-show="$store.cart.items.length">
-      Total: <span x-text="$rupiah($store.cart.total)"></span>
-    </h4>
-
-    <div class="form-container" x-show="$store.cart.items.length" x-data="checkoutForm()">
-      <h3>Form Checkout</h3>
-      <form @submit.prevent="submitCheckout">
-        <input type="hidden" name="items" :value="JSON.stringify($store.cart.items)">
-        <input type="hidden" name="total" :value="$store.cart.total">
-
-        <label>
-          Nama
-          <input type="text" x-model="customer.name" required autocomplete="name" id="name">
-        </label>
-
-        <label>
-          Email
-          <input type="email" x-model="customer.email" required autocomplete="email">
-        </label>
-
-        <label>
-          No HP
-          <input type="tel" x-model="customer.phone" required autocomplete="tel">
-        </label>
-
-        <button type="submit" :disabled="!canSubmit" :class="{ disabled: !canSubmit }">
-          Submit
-        </button>
-      </form>
-    </div>
   </div>
+
+  <!-- Total -->
+  <h4 x-show="$store.cart.items.length">
+    Total: <span x-text="$rupiah($store.cart.total)"></span>
+  </h4>
+
+  <!-- Form Checkout -->
+  <div class="form-container" x-show="$store.cart.items.length" x-data="checkoutForm()">
+    <h3>Form Checkout</h3>
+    <form @submit.prevent="submitCheckout">
+      <label>Nama
+        <input type="text" x-model="customer.name" required autocomplete="name" id="name" />
+      </label>
+
+      <label>Email
+        <input type="email" x-model="customer.email" required autocomplete="email" />
+      </label>
+
+      <label>No HP
+        <input type="tel" x-model="customer.phone" required autocomplete="tel" />
+      </label>
+
+      <button type="submit" :disabled="!canSubmit" :class="{ disabled: !canSubmit }">Submit</button>
+    </form>
+  </div>
+</div>
  <!-- Shopping Cart end -->
 
   
@@ -192,7 +193,7 @@
     <div class="row">
       <template x-for="item in items" :key="item.id">
         <div class="product-card">
-          <img :src="`/img/product/${item.img}`" :alt="item.name" width="120">
+          <img :src="`img/product/${item.img}`" :alt="item.name" width="120">
           <h3 x-text="item.name"></h3>
           <div class="product-price" x-text="rupiah(item.price)"></div>
           <button
@@ -214,52 +215,62 @@
       <p>Lorem ipsum dolor,sit amet consectetur
          adipisicing elit. Placeat, nam.
       </p>
+    <section class="contact-section" x-data="contactForm">
+  <form @submit.prevent="sendToWA" class="contact-form">
+  <h2>Hubungi Kami</h2>
+
+  <div class="input-group">
+    <i data-feather="user"></i>
+    <input type="text" placeholder="Nama" x-model="name" required />
+  </div>
+
+  <div class="input-group">
+    <i data-feather="mail"></i>
+    <input type="email" placeholder="Email" x-model="email" required />
+  </div>
+
+  <div class="input-group">
+    <i data-feather="phone"></i>
+    <input type="tel" placeholder="No HP" x-model="phone" required />
+  </div>
+
+  <!-- Pesan Error -->
+  <div x-show="error" x-text="error" class="error-msg"></div>
+
+  <button
+  type="submit"
+  class="btn"
+  :class="canSubmit ? 'btn-active' : 'btn-disabled'"
+  :disabled="!canSubmit"
+>
+  Kirim Pesan
+</button>
 
 
-      <div class="row">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63337.45691380475!2d108.0238526!3d-7.173179500000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68b369dbc1da0d%3A0x91c5fe6f0f3a7c7e!2sKec.%20Pangatikan%2C%20Kabupaten%20Garut%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1749797618770!5m2!1sid!2sid"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
+</form>
 
+</section>
 
-        <form action="">
-          <div class="input-group">
-            <i data-feather="user"></i>
-            <input type="text" placeholder="Nama">
-
-          </div>
-          <div class="input-group">
-            <i data-feather="mail"></i>
-            <input type="text" placeholder="Email">
-
-          </div>
-          <div class="input-group">
-            <i data-feather="phone"></i>
-            <input type="text" placeholder="No hp">
-          </div>
-          <button type="submit" class="btn">Kirim pesan</button>
-
-        </form>
-      </div>
-     </section>
 
 
     <!-- Contact Section Start -->
 
     
     <!-- Footer start -->
-<footer>
+<footer class="footer">
   <div class="socials">
-    <a href="#"><i data-feather="instagram"></i></a>
-    <a href="#"><i data-feather="twitter"></i></a>
-    <a href="#"><i data-feather="facebook"></i></a>
+    <a href="#" class="instagram" aria-label="Instagram"><i data-feather="instagram"></i></a>
+    <a href="#" class="x-twitter" aria-label="X (Twitter)">
+      <!-- SVG Ikon X -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M20.5 3h-2.3l-5.2 6.6L7 3H3l7.4 9.5L3 21h2.3l5.5-7 6.1 7h4l-8-10z"/>
+      </svg>
+    </a>
+    <a href="#" class="facebook" aria-label="Facebook"><i data-feather="facebook"></i></a>
   </div>
-  <div class="links">
-<a href="#home">Home</a>
-<a href="#about">Tentang Kami</a>
-<a href="#menu">Menu</a>
-<a href="#contact">Kontak></a>
-  </div>
+  
 <div class="credit">
-  <p>Created by<a href="">Aji Hardiansyah</a>. &copy; 2024</p>
+  <p>Created by<a href="">Aji Hardiansyah</a>. &copy; 2025</p>
 
 </div>
 
