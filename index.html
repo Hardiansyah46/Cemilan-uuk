@@ -57,55 +57,43 @@
  <!-- saecrh form end -->
 
  <!-- Shopping Cart -->
-  <div class="shopping-cart">
-    <h2></h2>
-    <div class="cart-item-list">
+  <div class="shopping-cart" :class="{ active: $store.cart.visible }">
+  <h2>Keranjang Saya</h2>
+  <div class="cart-item-list">
     <template x-for="(item, index) in $store.cart.items" :key="index">
       <div class="cart-item">
-        <h3 x-text="item.name"></h3>
-        <img :src="`img/product/${item.img}`" :alt="item.name" />
-        
+        <div class="item-top">
+          <img :src="`img/product/${item.img}`" :alt="item.name" />
+          <div class="item-details">
+            <h3 x-text="item.name"></h3>
+            <div class="price" x-text="$rupiah(item.price)"></div>
+          </div>
+        </div>
+
         <div class="cart-info">
           <div class="quantity-control">
             <button @click="$store.cart.remove(item.id)" class="qty-btn">−</button>
             <span class="qty-value" x-text="item.quantity"></span>
             <button @click="$store.cart.add(item)" class="qty-btn">+</button>
           </div>
-
-          <div class="price-display">
-            <span x-text="$rupiah(item.price)"></span> × 
-            <span x-text="$rupiah(item.total)"></span>
+          <div class="total-item-price">
+            Total: <span x-text="$rupiah(item.total)"></span>
           </div>
         </div>
       </div>
     </template>
   </div>
 
-  <!-- Total -->
-  <h4 x-show="$store.cart.items.length">
-    Total: <span x-text="$rupiah($store.cart.total)"></span>
-  </h4>
-
-  <!-- Form Checkout -->
-  <div class="form-container" x-show="$store.cart.items.length" x-data="checkoutForm()">
-    <h3>Form Checkout</h3>
-    <form @submit.prevent="submitCheckout">
-      <label>Nama
-        <input type="text" x-model="customer.name" required autocomplete="name" id="name" />
-      </label>
-
-      <label>Email
-        <input type="email" x-model="customer.email" required autocomplete="email" />
-      </label>
-
-      <label>No HP
-        <input type="tel" x-model="customer.phone" required autocomplete="tel" />
-      </label>
-
-      <button type="submit" :disabled="!canSubmit" :class="{ disabled: !canSubmit }">Submit</button>
-    </form>
+  <div class="cart-footer" x-show="$store.cart.items.length">
+  <div class="total-price">
+    Total Bayar: <span x-text="$rupiah($store.cart.total)"></span>
   </div>
+  <button class="checkout-btn" @click="checkoutNow">Checkout</button>
+  <button class="cancel-btn" @click="confirm('Yakin ingin membatalkan semua pesanan?') && $store.cart.clear()">Batal</button>
 </div>
+
+
+
  <!-- Shopping Cart end -->
 
   
@@ -196,12 +184,9 @@
           <img :src="`img/product/${item.img}`" :alt="item.name" width="120">
           <h3 x-text="item.name"></h3>
           <div class="product-price" x-text="rupiah(item.price)"></div>
-          <button
-            @click.prevent="openBuyNow(item)"
-            class="buy-now-btn"
-          >
-            Beli Sekarang
-          </button>
+          <button class="buy-now-btn" @click="openBuyNow(item)">Beli Sekarang</button>
+
+
         </div>
       </template>
     </div>
