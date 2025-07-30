@@ -83,7 +83,7 @@ img {
 }
 
 .navbar .navbar-extra a:hover {
-  color: black;
+  color: rgb(250, 244, 244);
 }
 
 #hamburger-menu {
@@ -113,7 +113,7 @@ img {
   height: 100%;
   width: 100%;
   font-size: 1.6rem;
-  color: white;
+  color: rgb(14, 5, 5);
   padding: 1rem;
 }
 
@@ -121,29 +121,29 @@ img {
   cursor: pointer;
   font-size: 2rem;
   margin-right: 1.5rem;
-  color: white;
+  color: rgb(179, 86, 42);
 }
 
 /* Shopping Crat */
-
 .shopping-cart {
   position: fixed;
   top: 0;
-  right: -100%;
-  width: 100%;
+  right: 0;
+  transform: translateX(100%); /* Mulai di luar layar kanan */
+  width: 55%;
   max-width: 420px;
   height: 100vh;
   background-color: #fff;
   color: #222;
   padding: 1rem;
-  transition: right 0.3s ease;
+  transition: transform 0.3s ease-in-out;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
   z-index: 9999;
   overflow-y: auto;
 }
 
 .shopping-cart.active {
-  right: 0;
+  transform: translateX(0); /* Masuk ke layar */
 }
 
 .cart-item-list {
